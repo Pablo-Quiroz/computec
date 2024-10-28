@@ -1,0 +1,131 @@
+
+<div th:fragment="header">
+    <header class="header">
+        <nav class="nav container">
+
+            <div class="nav__logo nav__logo-admin">
+                <a th:href="@{/administrador}"><img class="logo-admin" th:src="@{/assets/logo-admin.svg}" alt=""></a>
+            </div>
+
+
+            <div class="nav__menu">
+                <ul class="nav__list">
+
+                    <li class="nav__item">
+                        <a th:href="@{/producto/show/{categoria} (categoria=procesador)}" class="nav__link">
+                            Procesador
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/producto/show/{categoria} (categoria=ram)}" class="nav__link">
+                            Ram
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/producto/show/{categoria} (categoria=ssd)}" class="nav__link">
+                            SSD
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/producto/show/{categoria} (categoria=hhd)}" class="nav__link">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a th:href="@{/producto/show/{categoria} (categoria=tarjeta-madre)}" class="nav__link">
+                            Tarjeta Madre
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/producto/show/{categoria} (categoria=tarjeta-grafica)}" class="nav__link">
+                            Tarjeta Grafica
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a th:href="@{/producto/show/{categoria} (categoria=disipador)}" class="nav__link">
+                            Disipador
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/producto/show/{categoria} (categoria=fuente-poder)}" class="nav__link">
+                            Fuente de Poder
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/producto/show/{categoria} (categoria=case)}" class="nav__link">
+                            Case
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!--<div class="nav__carrito">
+                <a href=""><i class="ri-shopping-cart-2-fill nav__i-carrito"></i></a>
+            </div>-->
+
+            <div class="nav__usuario">
+
+                <div class="nav__usuario--container">
+                    <i class="ri-user-settings-fill"></i>
+                    <a class="nav__usuario--link"
+                       href="#"
+                       th:text="${#strings.listSplit(usuario.nombre, ' ')[0]} + ' ' + ${#strings.listSplit(usuario.apellido, ' ')[0]}">
+                    </a>
+
+                    <i class="ri-arrow-right-s-line"></i>
+                </div>
+
+                <ul class="nav__despegable">
+
+                    <li class="nav__despegable--item">
+                        <a class="nav__despegable--link" th:href="@{/producto/crear}">Crear producto</a>
+                    </li>
+
+                    <li class="nav__despegable--item">
+                        <a class="nav__despegable--link" href="#">Inconvenientes</a>
+                    </li>
+
+                    <li class="nav__despegable--item">
+                        <a class="nav__despegable--link" th:href="@{/usuario/cerrar}">Cerrar Sesion</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+
+<div th:fragment="footer">
+    <footer class="footer section">
+        <div class="footer__container container">
+
+            <ul class="footer__links">
+                <li>
+                    <a href="#" class="footer__link"><i class="ri-facebook-circle-fill"></i></a>
+                </li>
+
+                <li>
+                    <a href="#" class="footer__link"><i class="ri-instagram-fill"></i></a>
+                </li>
+
+                <li>
+                    <a href="#" class="footer__link"><i class="ri-twitter-x-fill"></i></a>
+                </li>
+
+                <li>
+                    <a href="#" class="footer__link"><i class="ri-youtube-fill"></i></a>
+                </li>
+            </ul>
+
+            <p class="footer__description">Todos los derechos reservados - CompuTec 2024</p>
+
+
+        </div>
+    </footer>
+</div>
