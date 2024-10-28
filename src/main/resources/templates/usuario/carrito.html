@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/carrito.css}">
+    <link rel="shortcut icon" th:href="@{/assets/logo.svg}" type="image/x-icon">
+    <title>Document</title>
+</head>
+<body th:class="${noscroll}">
+
+<div th:class="confirmar + ' ' + ${confirmarshow}">
+    <div class="confirmar__content">
+        <h2 class="confirmar__title">Confirmar la compra</h2>
+        <p class="confirmar__pregunta">¿Estás seguro de realizar la compra?</p>
+
+        <div class="confirmar__buttons">
+            <a class="confirmar__button confirmar__cancelar" th:href="@{/getCart}" >Cancelar la compra</a>
+            <a class="confirmar__button confirmar__compra" th:href="@{/saveOrder}">Realizar la compra</a>
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{usuario/template_usuario.html::menu}" th:if="${usuario==null}"></div>
+
+<div th:insert="~{usuario/template_usuario.html::header}" th:unless="${usuario==null}"></div>
+
+    <main class="main container">
+        <section class="cuerpo section">
+            
+            <section class="carrito">
+                <h2 class="cuerpo__title">Carrito de compras</h2>
+
+                <div class="carrito__item" th:each="do:${cart}">
+                    <div class="carrito__hijo ">
+                        
+                        <a href="#">
+                            <img class="carrito__img" th:src="@{/images/{img} (img=${do.img})}" alt="">
+                        </a>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__info" th:text="${do.nombre}"></p>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__precio" th:text="'S/'+' '+${do.precio}"></p>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <div class="carrito__bottons">
+                            <button style="display: none"  class="menos">-</button>
+                            <input type="number" readonly th:value="${do.cantidad}" class="cantidad">
+                            <button style="display: none" class="mas">+</button>
+                        </div>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__total" th:text="'S/'+' '+${do.total}"></p>
+                    </div>
+
+                    <div class="carrito__hijo carrito__ceter">
+                    <form method="POST">
+                        <input type="hidden" name="idcarrito" value="">
+                        <a class="eliminar" th:href="@{/delete/cart/{id}   (id=${do.producto.id}) }" >X</a>
+                    </form>
+                    </div>
+                </div>
+
+                
+            </section>
+
+            <section class="resumen">
+                <h2 class="cuerpo__title">Resumen</h2>
+                <div class="resumen__container">
+                    <div class="resumen__item">
+                        <p class="resumen__productos">Productos</p>
+                        <p class="total__productos" th:text="${sumacantidad}"></p>
+                    </div>
+                    <div class="resumen__item">
+                        <p class="resumen__subtotal">Subtotal</p>
+                        <p class="subtotal" th:text="${orden.total}"></p>
+                    </div>
+                    <div class="resumen__item">
+                        <p class="resumen__descuento">Descuento</p>
+                        <p class="descuento">0</p>
+                    </div>
+                    <div class="resumen__item">
+                        <p class="resumen__total" >total</p>
+                        <p class="total" th:text="${orden.total}"></p>
+                    </div>
+                </div>
+
+                <div class="resumen__button">
+                    <a th:href="@{/confimarcompra}">Generar compra</a>
+                </div>
+            </section>
+        </section>
+
+    </main>
+
+<div th:insert="~{usuario/template_usuario.html::footer}"></div>
+
+</body>
+</html>
